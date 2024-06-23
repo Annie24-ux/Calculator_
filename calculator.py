@@ -60,13 +60,23 @@ def get_result(operation, num1, num2 = None):
         
 
 def main():
-    operation = get_operation()
-    while (is_valid_operation(operation)):
-        num1, num2 = get_inputs(operation)
-        get_result(operation, num1, num2)
-        break
-    else:
-        get_operation()
+    while True:
+        operation = get_operation()
+        if(is_valid_operation(operation)):
+            num1, num2 = get_inputs(operation)
+            get_result(operation, num1, num2)
+            
+            while True:
+                shouldContinue = input("Would you like to perform another operation: ? ").lower()
+                if (shouldContinue in ("y", "yes")):
+                    break
+                elif (shouldContinue in ("n", "no")):
+                    print("Thank you for using our calculator!.")
+                    return
+                else:
+                    print("Please enter 'yes' or 'no'.")
+        else:
+            help()
     
             
     
