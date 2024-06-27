@@ -1,6 +1,7 @@
 
 def zero_num_operation():
-    print("Error: Invalid input\n * Number must be greater than zero!")
+    result = "Division by zero Error"
+    return result
     
     
 def invalid_input():

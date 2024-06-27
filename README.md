@@ -1,25 +1,25 @@
 # Calculator_
 This is a simple program that is supposed to handle math/arithmetic operations.
 
-Sum function
+Sum function("+")
 -adds 2 intergers and return the sum.
 
-Difference function
+Difference function("-")
 -Subtracts an interger from another and return the difference.
 
-Qoutient function
+Qoutient function("/")
 -Divides an interger from another and return the qoutient.
 
 Squareroot function
 -Gives a squareroot of an integer.
 
-Product function
+Product function("*")
 -adds 2 intergers and return their product.
 
-Exponential function
+Exponential function(x^2)
 -Gives an exponent of an integer and return the exponent.
 
-Factorial function
+Factorial function(!)
 -Takes an interger and return the factorial of a number.
 
 
