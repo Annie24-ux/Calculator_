@@ -22,4 +22,10 @@ Exponential function(x^2)
 Factorial function(!)
 -Takes an interger and return the factorial of a number.
 
+#To run:
+-Prerequisites - Install pyqt6.
+-Create a virtual environment on terminal, using source pyqt6-env/bin/activate
+-Run script by filename i.e python calculator_gui.py
+-Perform any operations as desired.
+
 
