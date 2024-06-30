@@ -1,14 +1,5 @@
-# import sys
-# from PyQt6.QtWidgets import QApplication, QLabel, QWidget
-
-# app = QApplication([])
-
-# window = QWidget()
-# window.setWindowTitle("App GUI")
-# window.setGeometry(100, 100, 280, 80)
-# helloMsg = QLabel("<h3>Hello, Sihle!</h3>", parent = window)
-# helloMsg.move(0, 0)
-
-# window.show()
-
-# sys.exit(app.exec())
+# Print multiplication table up to 10
+for i in range(1, 11):
+    for j in range(1, 11):
+        print(str(i) + str(j), end=" ")
+    print()  # Move to next line after each row

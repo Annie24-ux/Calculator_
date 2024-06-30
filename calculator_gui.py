@@ -13,7 +13,6 @@ class CalculatorWindow(QWidget):
   def operation_clicked(self):
     # Get the button text (operation symbol)
     button_text = self.sender().text()
-
     # Get current display text (user input)
     current_text = self.display.text()
 
@@ -26,7 +25,8 @@ class CalculatorWindow(QWidget):
     self.current_operation = button_text
 
   def equal_clicked(self):
-    # Get the operands and operation from display and stored variables
+    # Get the operands and operation from display 
+    # and stored variables
     display_text = self.display.text()
     current_operation = self.current_operation
 
@@ -38,8 +38,17 @@ class CalculatorWindow(QWidget):
         operand1 = float(split_text[0])
         operand2 = float(split_text[1])
     elif current_operation == "-":
+        split_text = display_text.split("-")
         operand1 = float(split_text[0])
         operand2 = float(split_text[1])
+    elif current_operation == "*":
+        split_text = display_text.split("*")
+        operand1 = float(split_text[0])
+        operand2 = float(split_text[1])  
+    elif current_operation == "/":
+        split_text = display_text.split("/")
+        operand1 = float(split_text[0])
+        operand2 = float(split_text[1])      
     else:
         # Handle invalid operation symbol
         zero_num_operation()
@@ -69,8 +78,24 @@ class CalculatorWindow(QWidget):
 
     # Function buttons (add a button for each operation)
     button_add = QPushButton("+")
-    button_add.clicked.connect(self.operation_clicked)  # Connect to operation_clicked
+    button_add.clicked.connect(self.operation_clicked)  
+    # Connect to operation_clicked
     grid_layout.addWidget(button_add, 1, 0, 1, 1)
+    
+    # Subtraction button to perform calculation
+    button_minus = QPushButton("-")
+    button_minus.clicked.connect(self.operation_clicked)
+    grid_layout.addWidget(button_minus, 1, 1, 1, 1)
+    
+    # Multiplication button to perform calculation
+    button_multiply = QPushButton("*")
+    button_multiply.clicked.connect(self.operation_clicked)
+    grid_layout.addWidget(button_multiply, 1, 2, 1, 1)
+    
+    # Division button to perform calculation
+    button_divide = QPushButton("/")
+    button_divide.clicked.connect(self.operation_clicked)
+    grid_layout.addWidget(button_divide, 1, 3, 1, 1)
 
     
     
@@ -78,27 +103,59 @@ class CalculatorWindow(QWidget):
     # ... Add similar buttons for other operations (subtract, multiply, divide, etc.)
 
     # Numeric buttons (0-9)
-    for i in range(7, 2, -1):  # Loop to create buttons for 7 to 1
-      for j in range(0, 3):
-        button_text = str((i - 2) * 3 + j)  # Calculate button text (1 to 9)
-        button = QPushButton(button_text)
-        button.clicked.connect(self.number_clicked)
-        grid_layout.addWidget(button, i, j, 1, 1)
+    # for i in range(7, 2, -1):  
+    #   # Loop to create buttons for 7 to 1
+    #   for j in range(0, 3):
+    #     button_text = str((i - 2) * 3 + j) 
+    #     # Calculate button text (1 to 9)
+    #     button = QPushButton(button_text)
+    #     button.clicked.connect(self.number_clicked)
+    #     grid_layout.addWidget(button, i, j, 1, 1)
+        
+    button_positions = {
+      1: (4, 2),  # Row 2, Column 2
+      2: (4, 1),  # Row 2, Column 1
+      3: (4, 0),  # Row 2, Column 0
+      4: (3, 2),  # Row 1, Column 2
+      5: (3, 1),  # Row 1, Column 1
+      6: (3, 0),  # Row 1, Column 0
+      7: (2, 2),  # Row 0, Column 2 (adjust based on operator placement)
+      8: (2, 1),  # Row 0, Column 1 (adjust based on operator placement)
+      9: (2, 0),  # Row 0, Column 0 (adjust based on operator placement)
+  }
 
+    for value, (row, col) in button_positions.items():
+      button_text = str(value)
+      button = QPushButton(button_text)
+      button.clicked.connect(self.number_clicked)
+      grid_layout.addWidget(button, row, col, 1, 1)
+      
+   
     # Button for decimal point
     button_decimal = QPushButton(".")
     button_decimal.clicked.connect(self.decimal_clicked)
-    grid_layout.addWidget(button_decimal, 4, 0, 1, 1)
+    grid_layout.addWidget(button_decimal, 5, 0, 1, 1)
+    #coord: row, column/position, sizes.
 
+    # button_minus = QPushButton("-")
+    # button_minus.clicked.connect(self.minus_clicked)
+    # grid_layout.addWidget(button_minus, 4, 2, 1, 2)
+    
+    
     # Equal button to perform calculation
     button_equal = QPushButton("=")
     button_equal.clicked.connect(self.equal_clicked)
-    grid_layout.addWidget(button_equal, 4, 1, 1, 2)
+    grid_layout.addWidget(button_equal, 5, 2, 1, 1)
+    
+    # zero button
+    button_zero = QPushButton("0")
+    button_zero.clicked.connect(self.number_clicked)
+    grid_layout.addWidget(button_zero, 5, 1, 1, 1)
 
     # Clear button to clear the display
     button_clear = QPushButton("C")
     button_clear.clicked.connect(self.clear_clicked)
-    grid_layout.addWidget(button_clear, 4, 3, 1, 1)
+    grid_layout.addWidget(button_clear, 5, 3, 1, 1)
 
     self.show()  # Show the window
     window = QWidget()

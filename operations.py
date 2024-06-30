@@ -57,7 +57,8 @@ def perform_operation(operand1, operand2, operation):
     if operation == "+":
         return addNums(operand1, operand2)
     elif operation == "-":
-        return subtractNums(operand1 - operand2 ) # Or implement your own subtract function
+        return subtractNums(operand1, operand2 )
+    # Or implement your own subtract function
     elif operation == "*":
         return multiplyNums(operand1, operand2)
         # Implement multiplication logic
