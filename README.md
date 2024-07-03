@@ -16,8 +16,9 @@ Squareroot function
 Product function("*")
 -adds 2 intergers and return their product.
 
-Exponential function(x^2)
+Exponential function(^)
 -Gives an exponent of an integer and return the exponent.
+-Operand1 is the base and Operand2 is the exponent.
 
 Factorial function(!)
 -Takes an interger and return the factorial of a number.
