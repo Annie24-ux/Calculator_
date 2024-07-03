@@ -65,6 +65,13 @@ def perform_operation(operand1, operand2, operation):
         # ...
     elif operation == "/":
         return divideNums(operand1, operand2)
+    elif operation == "^":
+        return expoNums(operand1, operand2)
+    elif operation == "√":        
+        return squareNums(operand1)
+    elif operation == "!":
+        return factorialNum(operand1)
+    
         
     else:
         return None

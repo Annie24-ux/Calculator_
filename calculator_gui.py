@@ -25,12 +25,9 @@ class CalculatorWindow(QWidget):
     self.current_operation = button_text
 
   def equal_clicked(self):
-    # Get the operands and operation from display 
-    # and stored variables
     display_text = self.display.text()
     current_operation = self.current_operation
 
-    # ... (optional error handling)
 
     # Extract operands based on the current operation
     if current_operation == "+":
@@ -48,16 +45,25 @@ class CalculatorWindow(QWidget):
     elif current_operation == "/":
         split_text = display_text.split("/")
         operand1 = float(split_text[0])
-        operand2 = float(split_text[1])      
+        operand2 = float(split_text[1])
+    elif current_operation == "^":
+        split_text = display_text.split("^")
+        operand1 = float(split_text[0])
+        operand2 = float(split_text[1])  
+    elif current_operation == "√": 
+        split_text = display_text.split("√")
+        operand1 = float(split_text[1])
+        operand2 = 1
+    elif current_operation == "!":
+        split_text = display_text.split("!")
+        operand1 = int(split_text[0])
+        operand2 = 1
     else:
-        # Handle invalid operation symbol
         zero_num_operation()
         return
-
-    # Call the perform_operation function
+    
     result = perform_operation(operand1, operand2, current_operation)
 
-    # Update the display with the result
     self.display.setText(str(result))    
   
     
@@ -65,63 +71,52 @@ class CalculatorWindow(QWidget):
     self.setWindowTitle("Calculator App")
     self.setGeometry(300, 300, 400, 500)  
 
-    # Create layout for widgets
     grid_layout = QGridLayout()
     self.setLayout(grid_layout)
 
     # Display field for user input and results
     self.display = QLineEdit()
     self.display.setReadOnly(True)  
-    # Make display read-only
     grid_layout.addWidget(self.display, 0, 0, 1, 4)  
-    # Span across 4 columns
 
-    # Function buttons (add a button for each operation)
     button_add = QPushButton("+")
     button_add.clicked.connect(self.operation_clicked)  
-    # Connect to operation_clicked
     grid_layout.addWidget(button_add, 1, 0, 1, 1)
     
-    # Subtraction button to perform calculation
     button_minus = QPushButton("-")
     button_minus.clicked.connect(self.operation_clicked)
     grid_layout.addWidget(button_minus, 1, 1, 1, 1)
     
-    # Multiplication button to perform calculation
     button_multiply = QPushButton("*")
     button_multiply.clicked.connect(self.operation_clicked)
     grid_layout.addWidget(button_multiply, 1, 2, 1, 1)
     
-    # Division button to perform calculation
     button_divide = QPushButton("/")
     button_divide.clicked.connect(self.operation_clicked)
     grid_layout.addWidget(button_divide, 1, 3, 1, 1)
 
+    button_exponents = QPushButton("^")
+    button_exponents.clicked.connect(self.operation_clicked)
+    grid_layout.addWidget(button_exponents, 2, 3, 1, 1)
     
+    button_exponents = QPushButton("√")
+    button_exponents.clicked.connect(self.operation_clicked)
+    grid_layout.addWidget(button_exponents, 3, 3, 1, 1)
     
-
-    # ... Add similar buttons for other operations (subtract, multiply, divide, etc.)
-
-    # Numeric buttons (0-9)
-    # for i in range(7, 2, -1):  
-    #   # Loop to create buttons for 7 to 1
-    #   for j in range(0, 3):
-    #     button_text = str((i - 2) * 3 + j) 
-    #     # Calculate button text (1 to 9)
-    #     button = QPushButton(button_text)
-    #     button.clicked.connect(self.number_clicked)
-    #     grid_layout.addWidget(button, i, j, 1, 1)
+    button_factorial = QPushButton("!")
+    button_factorial.clicked.connect(self.operation_clicked)
+    grid_layout.addWidget(button_factorial, 4, 3, 1, 1)
         
     button_positions = {
-      1: (4, 2),  # Row 2, Column 2
-      2: (4, 1),  # Row 2, Column 1
-      3: (4, 0),  # Row 2, Column 0
-      4: (3, 2),  # Row 1, Column 2
-      5: (3, 1),  # Row 1, Column 1
-      6: (3, 0),  # Row 1, Column 0
-      7: (2, 2),  # Row 0, Column 2 (adjust based on operator placement)
-      8: (2, 1),  # Row 0, Column 1 (adjust based on operator placement)
-      9: (2, 0),  # Row 0, Column 0 (adjust based on operator placement)
+      1: (4, 0),  
+      2: (4, 1),  
+      3: (4, 2),  
+      4: (3, 0),  
+      5: (3, 1),  
+      6: (3, 2),  
+      7: (2, 0), 
+      8: (2, 1),
+      9: (2, 2),
   }
 
     for value, (row, col) in button_positions.items():
